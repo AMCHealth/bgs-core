@@ -20,6 +20,7 @@
     <platform name="android">
 
 	    <js-module src="www/backgroundService.js" name="BackgroundService">
+	     <clobbers target="BackgroundService" />
 		</js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
@@ -44,15 +45,10 @@
         </config-file>
         
 		
-        <source-file src="src/android/BackgroundService.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="src/android/BackgroundServicePlugin.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="src/android/BackgroundServicePluginLogic.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="src/android/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="src/android/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="src/android/ReflectionHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-		
-        <source-file src="aidl/android/BackgroundServiceApi.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
-        <source-file src="aidl/android/BackgroundServiceListener.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/BackgroundServicePlugin.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/ReflectionHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
 		
     </platform>
 </plugin>

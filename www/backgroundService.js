@@ -221,4 +221,4 @@ BackgroundServiceFactory.prototype.create = function (serviceName) {
 	return backgroundService;
 }; 
 
-module.exports = new BackgroundServiceFactory();
+var me = module.exports = new BackgroundServiceFactory();
