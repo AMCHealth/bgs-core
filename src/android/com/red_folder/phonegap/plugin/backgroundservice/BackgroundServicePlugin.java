@@ -42,6 +42,9 @@ public class BackgroundServicePlugin extends CordovaPlugin {
     Context context = this.cordova.getActivity()
         .getApplicationContext();
     String serviceName = data.optString(0);
+    
+    Log.d(TAG,action+" -> serviceName: "+serviceName);
+    
     Class<?> serviceClass = ReflectionHelper.LoadClass(serviceName);
     Intent serviceIntent = new Intent(context, serviceClass);         
     switch (action) {
@@ -55,8 +58,10 @@ public class BackgroundServicePlugin extends CordovaPlugin {
       break;
     case START_SERVICE:
       context.startService(serviceIntent);
+      break;
     case STOP_SERVICE:
       context.stopService(serviceIntent);
+      break;
     }
     callback.success();
     return true;

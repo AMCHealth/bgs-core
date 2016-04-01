@@ -1,8 +1,8 @@
 {
-    "version": "2.0.0",
+    "version": "2.0.1",
     "name": "com.red_folder.phonegap.plugin.backgroundservice",
-    "cordova_name": "Background Service Plugin - Core logic",
-    "description": "\n        Framework code that allows the development and operation of an Android Background Service.\n    ",
+    "cordova_name": "AMC Background Service Plugin - Core logic",
+    "description": "Starts stops and on/off boots",
     "license": "Apache 2.0",
     "platforms": [
         "android"
