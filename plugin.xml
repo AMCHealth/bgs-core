@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="com.red_folder.phonegap.plugin.backgroundservice"
-        version="2.0.1">
+        version="2.0.2">
 
     <name>Background Service Plugin - Core logic</name>
 
@@ -16,12 +16,12 @@
         <engine name="cordova" version=">=3.0.0"/>
     </engines>
     
+	  <js-module src="www/backgroundService.js" name="BackgroundService">
+	     <clobbers target="BackgroundService" />
+		</js-module>
     <!-- android -->
     <platform name="android">
 
-	    <js-module src="www/backgroundService.js" name="BackgroundService">
-	     <clobbers target="BackgroundService" />
-		</js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="BackgroundServicePlugin">

@@ -1,5 +1,5 @@
 {
-    "version": "2.0.1",
+    "version": "2.0.2",
     "name": "com.red_folder.phonegap.plugin.backgroundservice",
     "cordova_name": "AMC Background Service Plugin - Core logic",
     "description": "Starts stops and on/off boots",
