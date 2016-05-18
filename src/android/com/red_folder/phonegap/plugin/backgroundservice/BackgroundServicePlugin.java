@@ -1,14 +1,16 @@
 package com.red_folder.phonegap.plugin.backgroundservice;
 
+import java.util.Map.Entry;
+
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.PluginResult;
+import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.util.Log;
-
-import org.apache.cordova.CordovaPlugin;
 
 public class BackgroundServicePlugin extends CordovaPlugin {
 
@@ -60,10 +62,20 @@ public class BackgroundServicePlugin extends CordovaPlugin {
       context.startService(serviceIntent);
       break;
     case STOP_SERVICE:
+      BackgroundServiceHelper.disconnect(this.cordova.getActivity(),serviceClass);
       context.stopService(serviceIntent);
       break;
     }
     callback.success();
     return true;
+  }
+  @Override
+  public void onDestroy() {
+    Log.e(TAG, "on Destroy");
+    for (Entry<Class<? extends Service>, ServiceConnection> e :BackgroundServiceHelper.connections.entrySet()){
+      this.cordova.getActivity().unbindService(e.getValue());
+    }
+    BackgroundServiceHelper.connections.clear();
+    BackgroundServiceHelper.messengers.clear();
   }
 }

@@ -46,6 +46,7 @@
         
 		
         <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/BackgroundServicePlugin.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/BackgroundServiceHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
         <source-file src="src/android/com/red_folder/phonegap/plugin/backgroundservice/ReflectionHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
