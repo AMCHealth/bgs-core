@@ -1,4 +1,4 @@
-package com.red_folder.phonegap.plugin.backgroundservice;
+package com.amchealth.phonegap.plugin.backgroundservice;
 
 import java.util.HashMap;
 import java.util.Map;
