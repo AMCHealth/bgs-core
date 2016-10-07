@@ -22,7 +22,7 @@ public class BootReceiver extends BroadcastReceiver {
 			{
 				// Fix to https://github.com/Red-Folder/bgs-core/issues/18
 				// Gets the class from string
-				Class<?> serviceClass = ReflectionHelper.LoadClass(serviceList[i]);
+				Class<?> serviceClass = ReflectionHelper.LoadServiceClass(serviceList[i]);
 				if(serviceClass == null) {
 				  PropertyHelper.removeBootService(context, serviceList[i]);
 				} else {

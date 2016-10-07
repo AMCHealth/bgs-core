@@ -18,6 +18,7 @@ public class BackgroundServicePlugin extends CordovaPlugin {
   private static final String START_SERVICE = "startService";
   private static final String DEREGISTER_FOR_BOOT_START = "deregisterForBootStart";
   private static final String REGISTER_FOR_BOOT_START = "registerForBootStart";
+  private static final String GET_STATUS = "getStatus";
   /*
    * ***********************************************************************************************
    * Static values
@@ -47,26 +48,33 @@ public class BackgroundServicePlugin extends CordovaPlugin {
     
     Log.d(TAG,action+" -> serviceName: "+serviceName);
     
-    Class<?> serviceClass = ReflectionHelper.LoadClass(serviceName);
-    Intent serviceIntent = new Intent(context, serviceClass);         
-    switch (action) {
-
-    case REGISTER_FOR_BOOT_START:
-      PropertyHelper.addBootService(context , serviceName);
-      break;
-    case DEREGISTER_FOR_BOOT_START:
-      PropertyHelper.removeBootService(this.cordova.getActivity()
-          .getApplicationContext(), serviceName);
-      break;
-    case START_SERVICE:
-      context.startService(serviceIntent);
-      break;
-    case STOP_SERVICE:
-      BackgroundServiceHelper.disconnect(this.cordova.getActivity(),serviceClass);
-      context.stopService(serviceIntent);
-      break;
+    Class<?extends Service> serviceClass = ReflectionHelper.LoadServiceClass(serviceName);
+    if(serviceClass == null){
+      callback.error("Invalid service class");
+      return true;
     }
-    callback.success();
+    Intent serviceIntent = new Intent(context, serviceClass);
+    int msg = 0;
+    switch (action) {
+      case REGISTER_FOR_BOOT_START:
+        PropertyHelper.addBootService(context , serviceName);
+        break;
+      case DEREGISTER_FOR_BOOT_START:
+        PropertyHelper.removeBootService(this.cordova.getActivity()
+            .getApplicationContext(), serviceName);
+        break;
+      case GET_STATUS:
+        msg = BackgroundServiceHelper.status(serviceClass)?1:0;
+        break;
+      case START_SERVICE:
+        context.startService(serviceIntent);
+        break;
+      case STOP_SERVICE:
+        BackgroundServiceHelper.disconnect(this.cordova.getActivity(),serviceClass);
+        context.stopService(serviceIntent);
+        break;
+    }
+    callback.success(msg);
     return true;
   }
   @Override

@@ -33,6 +33,9 @@ public class BackgroundServiceHelper {
       }
     }
   }
+  public static boolean status(Class<? extends Service> service) {
+    return connections.containsKey(service);
+  }
 
   public static boolean bindService(Activity activity,
       Class<? extends Service> service, Message onConnect) {

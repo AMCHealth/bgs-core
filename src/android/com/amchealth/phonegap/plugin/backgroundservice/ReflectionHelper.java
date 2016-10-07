@@ -1,5 +1,6 @@
 package com.amchealth.phonegap.plugin.backgroundservice;
 
+import android.app.Service;
 import android.util.Log;
 
 public class ReflectionHelper {
@@ -11,7 +12,7 @@ public class ReflectionHelper {
 	 */
 	public static final String TAG = ReflectionHelper.class.getSimpleName();
 	
-	public static Class<?> LoadClass(String className) {
+	public static Class<? extends Service> LoadServiceClass(String className) {
 		Class<?> result = null;
 	
 		Log.d(TAG, "Attempting to load call: " + className);
@@ -23,8 +24,12 @@ public class ReflectionHelper {
 		} catch (ClassNotFoundException ex) {
 			Log.d(TAG, "Class failed to load");
 			Log.d(TAG, ex.getMessage());
+			return null;
 		}
-		
-		return result;
+		try {
+		  return result.asSubclass(Service.class);
+		} catch (ClassCastException e){
+		  return null;
+		}
 	}
 }
